@@ -47,13 +47,13 @@ for(( i=1; i<=$noOfDays; i++ ))
 do
 	empCheck=$((RANDOM%3))
 
-	if [ $empCheck -eq $empPresent -a $totalHrs -lt 100 ]
+	if [ $empCheck -eq $empPresent ]
 	then
 		totalHrs=$(($totalHrs+8))
-	elif [ $empCheck -eq $empPartTime -a $totalHrs -lt 100 ]
+	elif [ $empCheck -eq $empPartTime ]
 	then
 		totalHrs=$(($totalHrs+4))
-	elif [ $empCheck -eq $empAbsent -a $totalHrs -lt 100 ]
+	elif [ $empCheck -eq $empAbsent ]
 	then
 		totalHrs=$(($totalHrs+0))
 	fi
