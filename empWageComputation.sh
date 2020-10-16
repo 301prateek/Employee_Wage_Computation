@@ -1,6 +1,6 @@
 #!/bin/bash -x
 #Author: Prateek
-#This is a program to Calculate Employee Salary for Full time, Half time and absent.
+#This is a program to Calculate Employee Salary for Full time, Half time and absent Using switch case statement.
 
 #Welcome Message
 echo "Welcome to Employee Wage Computation Program"
@@ -15,20 +15,24 @@ empAbsent=0
 
 wagePerHr=20
 
-#If contion to check if Employee is  present or absent, and assigning working hours.
+#Using Switch Case Statement to check if Employee is  present or absent, and assigning working hours.
 
-if [ $empAttendance -eq $empPresent ]
-then
-   echo "Employee is Present"
-   workingHrs=8
-elif [ $empAttendance -eq $empPartTime ]
-then
-   echo "Part time Employee"
-   workingHrs=4
-else
-   echo "Employee is Absent"
-   workingHrs=0
-fi
+case $empAttendance in
+	0)
+		echo "Employee is Absent"
+		workingHrs=0
+		;;
+	1)
+		echo "Employee is Present"
+		workingHrs=8
+		;;
+	2)
+		echo "Part time Employee"
+		workingHrs=4
+		;;
+	*)
+		echo "No more actions"
+esac
 
 #Calculating daily salary
 
