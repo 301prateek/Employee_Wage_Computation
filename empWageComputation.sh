@@ -39,26 +39,36 @@ esac
 salary=$(( $wagePerHr * $workingHrs ))
 echo "Todays Salary = $salary"
 
-#Calculating wage untill total days or total working hours is reached
+#Defined a function to Calculate wage untill total days or total working hours is reached
 noOfDays=20
 workingHrs=100
-totalHrs=0
 
-for(( i=1; i<=$noOfDays; i++ ))
-do
-	empCheck=$((RANDOM%3))
+function monthsSalary(){
 
-	if [ $empCheck -eq $empPresent -a $totalHrs -le $workingHrs ]
-	then
-		totalHrs=$(($totalHrs+8))
-	elif [ $empCheck -eq $empPartTime -a $totalHrs -le $workingHrs ]
-	then
-		totalHrs=$(($totalHrs+4))
-	elif [ $empCheck -eq $empAbsent -a $totalHrs -le $workingHrs ]
-	then
-		totalHrs=$(($totalHrs+0))
-	fi
+	totalHrs=0
+
+	for(( i=1; i<=$1; i++ ))
+	do
+		empCheck=$((RANDOM%3))
+
+		if [ $empCheck -eq 1 -a $totalHrs -le 100 ]
+		then
+			totalHrs=$(($totalHrs+8))
+		elif [ $empCheck -eq 2 -a $totalHrs -le 100 ]
+		then
+			totalHrs=$(($totalHrs+4))
+		elif [ $empCheck -eq 3 -a $totalHrs -le 100 ]
+		then
+			totalHrs=$(($totalHrs+0))
+		fi
 done
+echo $totalHrs
+}
 
-monthSalary=$(( $noOfDays * $totalHrs ))
-echo "This Months Salary is: $monthSalary"
+#Storing the value from the function in a variable => var
+var="$(monthsSalary 20)"
+echo "Total Working Hours: $var"
+
+#Calculating total salary for the month 
+totalSalary=$(( $noOfDays * $var ))
+echo "This Months Salary is: $totalSalary"
