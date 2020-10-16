@@ -39,3 +39,25 @@ esac
 salary=$(( $wagePerHr * $workingHrs ))
 echo "Todays Salary = $salary"
 
+#Calculating wage for a month
+noOfDays=20
+totalHrs=0
+
+for(( i=1; i<=$noOfDays; i++ ))
+do
+	empCheck=$((RANDOM%3))
+
+	if [ $empCheck -eq $empPresent -a $totalHrs -lt 100 ]
+	then
+		totalHrs=$(($totalHrs+8))
+	elif [ $empCheck -eq $empPartTime -a $totalHrs -lt 100 ]
+	then
+		totalHrs=$(($totalHrs+4))
+	elif [ $empCheck -eq $empAbsent -a $totalHrs -lt 100 ]
+	then
+		totalHrs=$(($totalHrs+0))
+	fi
+done
+
+monthSalary=$(( $noOfDays * $totalHrs ))
+echo "This Months Salary is: $monthSalary"
