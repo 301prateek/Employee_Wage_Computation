@@ -43,7 +43,7 @@ echo "Todays Salary = $salary"
 noOfDays=20
 workingHrs=100
 
-function monthsSalary(){
+function workingHours(){
 
 	totalHrs=0
 
@@ -66,7 +66,7 @@ echo $totalHrs
 }
 
 #Storing the value from the function in a variable => var
-var="$(monthsSalary 20)"
+var="$(workingHours 20)"
 echo "Total Working Hours: $var"
 
 #Calculating total salary for the month 
