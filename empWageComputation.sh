@@ -1,6 +1,7 @@
 #!/bin/bash -x
 #Author: Prateek
 #This is a program to Calculate Employee Salary for Full time, Half time and absent Using switch case statement.
+#Storing the Daily wage and Total wage in arrays.
 
 #Welcome Message
 echo "Welcome to Employee Wage Computation Program"
@@ -39,36 +40,56 @@ esac
 salary=$(( $wagePerHr * $workingHrs ))
 echo "Todays Salary = $salary"
 
-#Defined a function to Calculate wage untill total days or total working hours is reached
+#Storing Daily wage and Total wage using to arrays wage and wagetotal
 noOfDays=20
 workingHrs=100
+totalHrs=0
 
-function workingHours(){
+#Arrays
+wage=()
+wagetotal=()
+zero="0"
 
-	totalHrs=0
+for(( i=0; i<$noOfDays; i++ ))
+do
+	empCheck=$((RANDOM%3))
 
-	for(( i=1; i<=$1; i++ ))
-	do
-		empCheck=$((RANDOM%3))
+	if [ $empCheck -eq 1 -a $totalHrs -le 100 ]
+	then
+		totalHrs=$(($totalHrs+8))
+		wage[$i]=$((8*$wagePerHr))
 
-		if [ $empCheck -eq 1 -a $totalHrs -le 100 ]
-		then
-			totalHrs=$(($totalHrs+8))
-		elif [ $empCheck -eq 2 -a $totalHrs -le 100 ]
-		then
-			totalHrs=$(($totalHrs+4))
-		elif [ $empCheck -eq 3 -a $totalHrs -le 100 ]
-		then
-			totalHrs=$(($totalHrs+0))
-		fi
+	elif [ $empCheck -eq 2 -a $totalHrs -le 100 ]
+	then
+		totalHrs=$(($totalHrs+4))
+		wage[$i]=$((4*$wagePerHr))
+
+	elif [ $empCheck -eq 3 -a $totalHrs -le 100 ]
+	then
+		totalHrs=$(($totalHrs+0))
+		wage[$i]=$((0))
+
+	fi
 done
-echo $totalHrs
-}
 
-#Storing the value from the function in a variable => var
-var="$(workingHours 20)"
-echo "Total Working Hours: $var"
 
-#Calculating total salary for the month 
-totalSalary=$(( $noOfDays * $var ))
-echo "This Months Salary is: $totalSalary"
+#for loop to calculate totalwage and adding the value to the array wagetotal.
+totalwage=0
+
+for((i=0; i<20; i++ ))
+do
+	totalwage=$(($totalwage + $((${wage[$i]}))))
+	wagetotal[$i]=$totalwage
+done
+
+#for loop to print a table of Daily wage and Total wage together
+
+for(( i=0; i<20; i++))
+do
+	echo "Daily wage | Total wage"
+   echo "-----------------------"
+	echo "${wage[$i]}             ${wagetotal[$i]}"
+done
+
+
+
