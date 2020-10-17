@@ -87,7 +87,7 @@ done
 for(( i=0; i<20; i++))
 do
 	echo "Daily wage | Total wage"
-   echo "-----------------------"
+	echo "-----------------------"
 	echo "${wage[$i]}             ${wagetotal[$i]}"
 done
 
