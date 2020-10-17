@@ -1,7 +1,7 @@
 #!/bin/bash -x
 #Author: Prateek
 #This is a program to Calculate Employee Salary for Full time, Half time and absent Using switch case statement.
-#Storing the Daily wage and Total wage in arrays.
+#Storing the Day along with Daily wage and Total wage in arrays.
 
 #Welcome Message
 echo "Welcome to Employee Wage Computation Program"
@@ -40,7 +40,7 @@ esac
 salary=$(( $wagePerHr * $workingHrs ))
 echo "Todays Salary = $salary"
 
-#Storing Daily wage and Total wage using to arrays wage and wagetotal
+#Storing Day along with Daily wage and Total wage using arrays.
 noOfDays=20
 workingHrs=100
 totalHrs=0
@@ -48,7 +48,7 @@ totalHrs=0
 #Arrays
 wage=()
 wagetotal=()
-zero="0"
+day=()
 
 for(( i=0; i<$noOfDays; i++ ))
 do
@@ -80,15 +80,16 @@ for((i=0; i<20; i++ ))
 do
 	totalwage=$(($totalwage + $((${wage[$i]}))))
 	wagetotal[$i]=$totalwage
+	day[$i]=$(($i+1))
 done
 
-#for loop to print a table of Daily wage and Total wage together
+#for loop to print a table of Day, Daily wage and Total wage.
 
 for(( i=0; i<20; i++))
 do
-	echo "Daily wage | Total wage"
-	echo "-----------------------"
-	echo "${wage[$i]}             ${wagetotal[$i]}"
+	echo "Day   |   Daily wage   | Total wage"
+	echo "-----------------------------------"
+	echo "${day[$i]}           ${wage[$i]}             ${wagetotal[$i]}"
 done
 
 
